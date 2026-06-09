@@ -722,6 +722,26 @@
     </div>
   </div>
 
+  <!-- INSTRUÇÃO DOMÍNIO DEFINITIVO -->
+  <div style="background:#fff8e1;border:1.5px solid #f59e0b;border-radius:12px;padding:20px 24px;margin-bottom:24px;" class="no-break">
+    <div style="display:flex;align-items:center;gap:10px;margin-bottom:10px;">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M10.29 3.86L1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"/><line x1="12" y1="9" x2="12" y2="13"/><line x1="12" y1="17" x2="12.01" y2="17"/></svg>
+      <strong style="font-size:13px;color:#92400e;">Instrução ao Desenvolvedor — Atualização do Domínio Definitivo</strong>
+    </div>
+    <p style="color:#78350f;margin-bottom:10px;font-size:12px;">Quando o domínio final da Landing Page for definido e configurado (ex: <code>hubsiero.com.br</code>), é obrigatório atualizar <strong>3 pontos</strong> no arquivo <code>index.html</code>:</p>
+    <div style="background:#fffbeb;border-radius:8px;padding:14px 18px;font-size:11px;color:#78350f;line-height:2;">
+      <strong>1. URL Canônica</strong> — linha <code>&lt;link rel="canonical"&gt;</code>:<br/>
+      Alterar para: <code>https://seudomain.com.br/</code><br/><br/>
+      <strong>2. Open Graph URL</strong> — tag <code>og:url</code>:<br/>
+      Alterar para: <code>https://seudomain.com.br/</code><br/><br/>
+      <strong>3. Open Graph Image</strong> — tag <code>og:image</code>:<br/>
+      Alterar para: <code>https://seudomain.com.br/links/og-image.png</code><br/><br/>
+      <strong>4. Schema.org</strong> — bloco JSON-LD no <code>&lt;head&gt;</code>:<br/>
+      Atualizar todos os campos <code>"url"</code>, <code>"@id"</code> e <code>"logo"</code> que contenham a URL provisória do GitHub Pages.
+    </div>
+    <p style="color:#92400e;font-size:11px;margin-top:10px;">Após a atualização, cadastrar o novo domínio no <strong>Google Search Console</strong> e enviar o <code>sitemap.xml</code> para acelerar a reindexação.</p>
+  </div>
+
   <!-- 6 -->
   <div class="seo-item no-break">
     <div class="seo-item-header">
@@ -917,6 +937,19 @@
       <div class="stat-num" style="color:var(--teal)">91/100</div>
       <p style="margin-top:8px">Com sitemap.xml, robots.txt, Search Console e Google Analytics 4 configurados.</p>
     </div>
+  </div>
+
+  <div style="background:var(--light);border:1px solid var(--border);border-radius:12px;padding:18px 24px;font-size:11px;color:var(--gray);line-height:1.8;" class="no-break">
+    <strong style="font-size:12px;color:var(--navy);display:block;margin-bottom:8px;">Fontes & Metodologia dos Scores de SEO</strong>
+    Os scores apresentados são estimativas baseadas na auditoria manual de itens On-Page conforme os seguintes critérios e ferramentas de referência:
+    <ul style="margin-top:8px;padding-left:18px;">
+      <li><strong>Google Lighthouse</strong> (developers.google.com/web/tools/lighthouse) — critérios de SEO: title, meta description, canonical, robots, alt text, semântica HTML</li>
+      <li><strong>Google Search Central — SEO Starter Guide</strong> (developers.google.com/search/docs) — boas práticas de indexação, Schema.org e dados estruturados</li>
+      <li><strong>Moz On-Page Grader</strong> (moz.com/learn/seo/on-page-factors) — fatores de ranqueamento On-Page utilizados como referência de peso</li>
+      <li><strong>Schema.org Validator</strong> (validator.schema.org) — validação dos dados estruturados implementados</li>
+      <li><strong>Open Graph Debugger — Meta</strong> (developers.facebook.com/tools/debug) — validação das tags Open Graph</li>
+    </ul>
+    <p style="margin-top:8px;"><em>Nota: os scores finais devem ser validados com o Google PageSpeed Insights (pagespeed.web.dev) após o domínio definitivo estar configurado e indexado.</em></p>
   </div>
 
   <div class="report-footer">
