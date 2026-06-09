@@ -347,7 +347,7 @@ body {
 .features-cards,
 .features-banner {
   width: 100%;
-  max-width: 800px;
+  max-width: 1100px;
   height: auto;
   display: block;
 }
@@ -372,7 +372,7 @@ body {
   grid-template-columns: repeat(3, 1fr);
   gap: 16px;
   width: 100%;
-  max-width: 800px;
+  max-width: 1100px;
 }
 
 .feature-card {
@@ -452,7 +452,7 @@ body {
   position: relative;
   margin-top: 32px;
   width: 100%;
-  max-width: 800px;
+  max-width: 1100px;
   aspect-ratio: 16 / 9;
   border-radius: 24px;
   overflow: hidden;
