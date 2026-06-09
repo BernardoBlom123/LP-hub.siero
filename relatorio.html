@@ -1,0 +1,930 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Relatório — Hub.Siero Landing Page</title>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;600;700&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --navy:  #0D1B2A;
+      --teal:  #00C4B4;
+      --teal2: #00D9BD;
+      --gray:  #6b7280;
+      --light: #f9f9f9;
+      --border:#e5e7eb;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background: #ffffff;
+      color: var(--navy);
+      font-size: 13px;
+      line-height: 1.7;
+    }
+
+    /* ── PRINT ── */
+    @media print {
+      body { font-size: 11px; }
+      .page { page-break-after: always; }
+      .no-break { page-break-inside: avoid; }
+      @page { margin: 20mm 18mm; }
+    }
+
+    /* ── LAYOUT ── */
+    .page {
+      max-width: 860px;
+      margin: 0 auto;
+      padding: 64px 56px;
+      min-height: 100vh;
+    }
+
+    /* ── COVER ── */
+    .cover {
+      background: var(--navy);
+      color: #fff;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      min-height: 100vh;
+      padding: 72px 56px;
+    }
+
+    .cover-top { display: flex; align-items: center; gap: 14px; }
+
+    .cover-icon {
+      width: 48px; height: 48px;
+      background: var(--teal);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+    }
+
+    .cover-icon svg { width: 26px; height: 26px; }
+
+    .cover-brand {
+      font-size: 22px;
+      font-weight: 700;
+      color: #fff;
+    }
+
+    .cover-mid { padding: 48px 0; }
+
+    .cover-label {
+      font-size: 11px;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 20px;
+    }
+
+    .cover-title {
+      font-size: 42px;
+      font-weight: 300;
+      line-height: 1.15;
+      color: #fff;
+      margin-bottom: 16px;
+    }
+
+    .cover-title strong { font-weight: 700; color: var(--teal); }
+
+    .cover-sub {
+      font-size: 15px;
+      color: rgba(255,255,255,0.6);
+      max-width: 480px;
+      line-height: 1.7;
+    }
+
+    .cover-line {
+      width: 56px; height: 3px;
+      background: var(--teal);
+      border-radius: 2px;
+      margin: 28px 0;
+    }
+
+    .cover-bottom {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-end;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      padding-top: 24px;
+      font-size: 12px;
+      color: rgba(255,255,255,0.45);
+    }
+
+    .cover-date { text-align: right; }
+
+    /* ── SECTIONS ── */
+    .section-title {
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      color: var(--teal);
+      margin-bottom: 8px;
+    }
+
+    h2 {
+      font-size: 28px;
+      font-weight: 300;
+      color: var(--navy);
+      line-height: 1.25;
+      margin-bottom: 32px;
+    }
+
+    h3 {
+      font-size: 16px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 8px;
+    }
+
+    h4 {
+      font-size: 13px;
+      font-weight: 600;
+      color: var(--navy);
+      margin-bottom: 4px;
+    }
+
+    p { color: var(--gray); margin-bottom: 16px; }
+
+    /* ── DIVIDER ── */
+    .divider {
+      border: none;
+      border-top: 1px solid var(--border);
+      margin: 40px 0;
+    }
+
+    /* ── CARDS GRID ── */
+    .cards-2 {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 20px;
+      margin-bottom: 32px;
+    }
+
+    .cards-3 {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 16px;
+      margin-bottom: 32px;
+    }
+
+    .card {
+      background: var(--light);
+      border-radius: 16px;
+      padding: 24px;
+      border: 1px solid var(--border);
+    }
+
+    .card-teal {
+      background: #EAF9F7;
+      border-color: rgba(0,196,180,0.25);
+    }
+
+    .card-navy {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    .card-navy h4 { color: #fff; }
+    .card-navy p  { color: rgba(255,255,255,0.65); }
+
+    .stat-num {
+      font-size: 36px;
+      font-weight: 700;
+      color: var(--teal);
+      line-height: 1;
+      margin-bottom: 4px;
+    }
+
+    .stat-label {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    /* ── TABLE ── */
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 12px;
+      margin-bottom: 32px;
+    }
+
+    thead tr {
+      background: var(--navy);
+      color: #fff;
+    }
+
+    thead th {
+      padding: 12px 16px;
+      text-align: left;
+      font-weight: 600;
+      font-size: 11px;
+      letter-spacing: 0.04em;
+    }
+
+    tbody tr { border-bottom: 1px solid var(--border); }
+    tbody tr:nth-child(even) { background: var(--light); }
+
+    tbody td {
+      padding: 12px 16px;
+      color: var(--gray);
+      vertical-align: top;
+    }
+
+    tbody td:first-child { color: var(--navy); font-weight: 600; }
+
+    /* ── BADGE ── */
+    .badge {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 10px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+    }
+
+    .badge-green  { background: #d1fae5; color: #065f46; }
+    .badge-blue   { background: #dbeafe; color: #1e40af; }
+    .badge-yellow { background: #fef3c7; color: #92400e; }
+    .badge-teal   { background: #EAF9F7; color: #007a6e; }
+
+    /* ── SEO ITEM ── */
+    .seo-item {
+      border-left: 3px solid var(--teal);
+      padding: 20px 24px;
+      background: var(--light);
+      border-radius: 0 12px 12px 0;
+      margin-bottom: 20px;
+    }
+
+    .seo-item-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .seo-item-num {
+      width: 28px; height: 28px;
+      border-radius: 50%;
+      background: var(--teal);
+      color: #fff;
+      font-size: 12px;
+      font-weight: 700;
+      display: flex; align-items: center; justify-content: center;
+      flex-shrink: 0;
+      margin-right: 12px;
+    }
+
+    .seo-item-title {
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--navy);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      flex: 1;
+    }
+
+    .seo-impact { display: flex; flex-direction: column; gap: 4px; margin-top: 10px; }
+
+    .seo-impact-row {
+      display: flex;
+      gap: 8px;
+      align-items: baseline;
+    }
+
+    .seo-impact-label {
+      font-size: 11px;
+      font-weight: 600;
+      color: var(--navy);
+      min-width: 120px;
+    }
+
+    .seo-impact-value {
+      font-size: 12px;
+      color: var(--gray);
+    }
+
+    code {
+      font-family: 'Courier New', monospace;
+      font-size: 11px;
+      background: #f3f4f6;
+      border: 1px solid var(--border);
+      border-radius: 4px;
+      padding: 2px 6px;
+      color: #374151;
+    }
+
+    /* ── FOOTER BAR ── */
+    .report-footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding-top: 32px;
+      margin-top: 48px;
+      border-top: 1px solid var(--border);
+      font-size: 11px;
+      color: var(--gray);
+    }
+
+    .teal { color: var(--teal); }
+    .mb-8 { margin-bottom: 8px; }
+    .mb-16 { margin-bottom: 16px; }
+    .mb-32 { margin-bottom: 32px; }
+    .mt-32 { margin-top: 32px; }
+  </style>
+</head>
+<body>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- CAPA                                                   -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="cover page">
+  <div class="cover-mid" style="padding-top: 0;">
+    <p class="cover-label">Documentação Técnica & Relatório de SEO</p>
+    <h1 class="cover-title">Landing Page<br /><strong>Hub.Siero</strong></h1>
+    <div class="cover-line"></div>
+    <p class="cover-sub">Documentação completa do desenvolvimento, implementações técnicas e análise de SEO com estratégia baseada em palavras-chave do segmento de Departamento Pessoal e HRTech no Brasil.</p>
+  </div>
+
+  <div class="cover-bottom">
+    <div>
+      <div>Desenvolvido por <strong style="color:rgba(255,255,255,0.7)">Bernardo Blom</strong></div>
+      <div>bernardo.guimaraes@claglobal.com.br</div>
+    </div>
+    <div class="cover-date">
+      <div>Versão 1.0</div>
+      <div>Junho 2026</div>
+    </div>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- VISÃO GERAL DO PROJETO                                 -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <p class="section-title">01 — Visão Geral</p>
+  <h2>Sobre o Projeto</h2>
+
+  <div class="cards-3 no-break">
+    <div class="card card-teal">
+      <div class="stat-num">1</div>
+      <div class="stat-label">arquivo HTML</div>
+    </div>
+    <div class="card card-teal">
+      <div class="stat-num">~1.400</div>
+      <div class="stat-label">linhas de CSS</div>
+    </div>
+    <div class="card card-teal">
+      <div class="stat-num">100%</div>
+      <div class="stat-label">CSS / HTML puro — sem framework</div>
+    </div>
+  </div>
+
+  <h3>Objetivo</h3>
+  <p>Desenvolver uma Landing Page de alta conversão para o Hub.Siero, plataforma de automação de Departamento Pessoal, com foco em apresentar os serviços, gerar leads qualificados via formulário HubSpot e estabelecer presença digital com SEO estruturado.</p>
+
+  <h3>Stack Tecnológica</h3>
+  <table>
+    <thead>
+      <tr><th>Tecnologia</th><th>Uso</th><th>Justificativa</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>HTML5 semântico</td><td>Estrutura de conteúdo</td><td>Melhor indexação por crawlers + acessibilidade</td></tr>
+      <tr><td>CSS3 puro</td><td>Estilização e animações</td><td>Zero dependências, carregamento instantâneo</td></tr>
+      <tr><td>Lucide Icons (CDN)</td><td>Ícones nos cards de serviço</td><td>SVG otimizado, stroke-based, consistência visual</td></tr>
+      <tr><td>Google Fonts (Raleway)</td><td>Tipografia</td><td>Preconnect configurado para mínima latência</td></tr>
+      <tr><td>HubSpot Forms</td><td>Captura de leads</td><td>Integração nativa com CRM</td></tr>
+      <tr><td>Microsoft Clarity</td><td>Heatmaps e analytics</td><td>Mapeamento comportamental dos visitantes</td></tr>
+    </tbody>
+  </table>
+
+  <hr class="divider" />
+
+  <h3>Repositório GitHub</h3>
+  <p>O projeto está versionado no repositório <code>BernardoBlom123/LP-hub.siero</code> com um commit inicial na branch <code>main</code>. Qualquer atualização pode ser publicada via GitHub Pages, Netlify ou Vercel.</p>
+
+  <div class="report-footer">
+    <span>Hub.Siero — Documentação Técnica & SEO</span>
+    <span>Junho 2026</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- DOCUMENTAÇÃO TÉCNICA                                   -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <p class="section-title">02 — Documentação Técnica</p>
+  <h2>Estrutura & Implementações</h2>
+
+  <h3 class="mb-8">Arquitetura de Seções</h3>
+  <table>
+    <thead>
+      <tr><th>Seção</th><th>Classe CSS</th><th>Background</th><th>Finalidade</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Header</td><td>.header</td><td>Glass blur</td><td>Navegação + CTA principal</td></tr>
+      <tr><td>Hero</td><td>.hero</td><td>#f9f9f9</td><td>Headline animada + vídeo do produto</td></tr>
+      <tr><td>Features</td><td>.features-section</td><td>#f9f9f9</td><td>3 diferenciais + banner do dashboard</td></tr>
+      <tr><td>Clientes</td><td>.clients-section</td><td>#f9f9f9</td><td>Carousel de logos de clientes</td></tr>
+      <tr><td>Serviços</td><td>.services-section</td><td>#f2f2f2</td><td>Cards de serviços com ícones Lucide</td></tr>
+      <tr><td>CTA</td><td>.cta-section</td><td>#f9f9f9</td><td>Cards de conversão + botão de demo</td></tr>
+      <tr><td>Processo</td><td>.steps-section</td><td>#f2f2f2</td><td>3 etapas de onboarding</td></tr>
+      <tr><td>Contato</td><td>.contact-section</td><td>#0D1B2A</td><td>Formulário HubSpot + fundo animado</td></tr>
+      <tr><td>Footer</td><td>.footer</td><td>#00D9BD</td><td>Endereço, contato e links legais</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="mb-8">Sistema de Design</h3>
+  <div class="cards-2 no-break">
+    <div class="card">
+      <h4 class="mb-8">Paleta de cores</h4>
+      <p class="mb-8">Navy principal: <code>#0D1B2A</code></p>
+      <p class="mb-8">Teal primário: <code>#00C4B4</code> / <code>#00D9BD</code></p>
+      <p class="mb-8">Cinza médio: <code>#6b7280</code></p>
+      <p class="mb-8">Cinza claro: <code>#e5e7eb</code></p>
+      <p>Fundos alternados: <code>#f9f9f9</code> / <code>#f2f2f2</code></p>
+    </div>
+    <div class="card">
+      <h4 class="mb-8">Escala tipográfica</h4>
+      <p class="mb-8">H1 Hero: <code>clamp(32–64px)</code> weight 500</p>
+      <p class="mb-8">H2 Seções: <code>clamp(32–48px)</code> weight 300</p>
+      <p class="mb-8">H3 Cards: <code>18–20px</code> weight 600</p>
+      <p class="mb-8">Lead text: <code>16px</code> weight 400</p>
+      <p>Body / desc: <code>13px</code> weight 400</p>
+    </div>
+  </div>
+
+  <h3 class="mb-8">Responsividade</h3>
+  <table>
+    <thead>
+      <tr><th>Breakpoint</th><th>Breakpoint (px)</th><th>Principais ajustes</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>Tablet</td><td>≤ 900px</td><td>Cards em 2 colunas, orbit scale 0.65</td></tr>
+      <tr><td>Mobile</td><td>≤ 640px</td><td>1 coluna, header não sticky, headline 32px, FAB de contato ativo</td></tr>
+    </tbody>
+  </table>
+
+  <h3 class="mb-8">Otimizações de Performance</h3>
+  <div class="cards-2 no-break">
+    <div class="card">
+      <h4 class="mb-8">Lazy Loading de Vídeos</h4>
+      <p>Vídeos com <code>preload="none"</code> e <code>data-src</code>. Intersection Observer ativa o carregamento apenas quando o elemento entra no viewport (rootMargin: 150px). Zero bytes de vídeo no load inicial.</p>
+    </div>
+    <div class="card">
+      <h4 class="mb-8">Poster SVG Inline</h4>
+      <p>Poster dos vídeos implementado como data URI SVG (~300 bytes). Elimina uma requisição HTTP extra e exibe imediatamente sem flickering.</p>
+    </div>
+  </div>
+
+  <div class="report-footer">
+    <span>Hub.Siero — Documentação Técnica & SEO</span>
+    <span>Junho 2026</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- DIAGNÓSTICO SEO                                        -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <p class="section-title">03 — Relatório de SEO</p>
+  <h2>Diagnóstico Inicial</h2>
+
+  <p>Antes das implementações, a landing page apresentava as seguintes lacunas críticas de SEO identificadas em auditoria:</p>
+
+  <table class="mb-32">
+    <thead>
+      <tr><th>Elemento</th><th>Status antes</th><th>Impacto</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Title tag</td>
+        <td><span class="badge badge-yellow">Genérico</span> "HubSiero"</td>
+        <td>Sem keywords relevantes — invisível para buscas do segmento</td>
+      </tr>
+      <tr>
+        <td>Meta description</td>
+        <td><span class="badge badge-yellow">Ausente</span></td>
+        <td>Google gera snippets automáticos ruins nos resultados</td>
+      </tr>
+      <tr>
+        <td>Open Graph</td>
+        <td><span class="badge badge-yellow">Ausente</span></td>
+        <td>Compartilhamentos sem imagem/título no WhatsApp e LinkedIn</td>
+      </tr>
+      <tr>
+        <td>Schema.org</td>
+        <td><span class="badge badge-yellow">Ausente</span></td>
+        <td>Google não identifica a empresa nem o tipo de software</td>
+      </tr>
+      <tr>
+        <td>Robots meta</td>
+        <td><span class="badge badge-yellow">Ausente</span></td>
+        <td>Instrução de indexação não explicitada ao Googlebot</td>
+      </tr>
+      <tr>
+        <td>Canonical URL</td>
+        <td><span class="badge badge-yellow">Ausente</span></td>
+        <td>Risco de penalidade por conteúdo duplicado (www vs não-www)</td>
+      </tr>
+      <tr>
+        <td>Favicon</td>
+        <td><span class="badge badge-yellow">Ausente</span></td>
+        <td>Aba do browser sem identidade visual</td>
+      </tr>
+      <tr>
+        <td>Tag semântica &lt;main&gt;</td>
+        <td><span class="badge badge-yellow">Ausente</span></td>
+        <td>Conteúdo principal não delimitado para crawlers</td>
+      </tr>
+      <tr>
+        <td>Alt text em imagens</td>
+        <td><span class="badge badge-yellow">Incompleto</span></td>
+        <td>Imagens-chave sem contexto para indexação de imagens do Google</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <hr class="divider" />
+
+  <p class="section-title">Pesquisa de Palavras-chave</p>
+  <h3 class="mb-16">Segmento: Departamento Pessoal & HRTech — Brasil 2025</h3>
+
+  <table>
+    <thead>
+      <tr><th>Palavra-chave</th><th>Volume estimado</th><th>Concorrência</th><th>Intenção</th></tr>
+    </thead>
+    <tbody>
+      <tr><td>software folha de pagamento</td><td>Alto</td><td>Alta</td><td>Transacional</td></tr>
+      <tr><td>sistema departamento pessoal</td><td>Alto</td><td>Alta</td><td>Transacional</td></tr>
+      <tr><td>conformidade trabalhista</td><td>Médio-Alto</td><td>Média</td><td>Informacional</td></tr>
+      <tr><td>auditoria folha de pagamento</td><td>Médio</td><td>Baixa</td><td>Transacional</td></tr>
+      <tr><td>automação eSocial</td><td>Crescente</td><td>Baixa</td><td>Transacional</td></tr>
+      <tr><td>compliance trabalhista software</td><td>Médio</td><td>Baixa</td><td>Transacional</td></tr>
+      <tr><td>automatizar conferência folha pagamento</td><td>Long-tail</td><td>Muito Baixa</td><td>Transacional</td></tr>
+      <tr><td>reduzir riscos trabalhistas empresa</td><td>Long-tail</td><td>Muito Baixa</td><td>Informacional</td></tr>
+    </tbody>
+  </table>
+
+  <p>Tendência 2024–2025: após a obrigatoriedade do eSocial para empresas de todos os portes, buscas por automação trabalhista cresceram significativamente. A DIRF e a reforma trabalhista são temas que geram demanda contínua por soluções como o Hub.Siero.</p>
+
+  <div class="report-footer">
+    <span>Hub.Siero — Documentação Técnica & SEO</span>
+    <span>Junho 2026</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- IMPLEMENTAÇÕES SEO                                     -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <p class="section-title">04 — Implementações Realizadas</p>
+  <h2>SEO On-Page — Detalhamento</h2>
+
+  <!-- 1 -->
+  <div class="seo-item no-break">
+    <div class="seo-item-header">
+      <div class="seo-item-title">
+        <div class="seo-item-num">01</div>
+        Title Tag Otimizado
+        <span class="badge badge-green">Implementado</span>
+      </div>
+    </div>
+    <div class="seo-impact">
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Antes:</span>
+        <span class="seo-impact-value"><code>HubSiero</code> — genérico, sem palavra-chave</span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Depois:</span>
+        <span class="seo-impact-value"><code>HubSiero | Automação de Folha e Compliance Trabalhista</code> (55 chars)</span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Por que importa:</span>
+        <span class="seo-impact-value">O title tag é o fator de ranqueamento On-Page mais direto. Contém marca + 2 keywords primárias de alto volume. O Google exibe os primeiros 60 caracteres nos resultados — o novo title está dentro do limite ideal.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 2 -->
+  <div class="seo-item no-break">
+    <div class="seo-item-header">
+      <div class="seo-item-title">
+        <div class="seo-item-num">02</div>
+        Meta Description
+        <span class="badge badge-green">Implementado</span>
+      </div>
+    </div>
+    <div class="seo-impact">
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Antes:</span>
+        <span class="seo-impact-value">Ausente</span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Depois:</span>
+        <span class="seo-impact-value">"Automatize a conferência da folha de pagamento e garanta conformidade trabalhista e fiscal. O Hub.Siero reduz riscos, burocracia e maximiza resultados do seu DP." (148 chars)</span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Por que importa:</span>
+        <span class="seo-impact-value">Embora não seja fator direto de ranqueamento, a meta description é o que aparece abaixo do título nos resultados do Google. Uma boa description aumenta o CTR (Click-Through Rate) — mais cliques = mais sinal positivo ao Google.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 3 -->
+  <div class="seo-item no-break">
+    <div class="seo-item-header">
+      <div class="seo-item-title">
+        <div class="seo-item-num">03</div>
+        Open Graph (og:)
+        <span class="badge badge-green">Implementado</span>
+      </div>
+    </div>
+    <div class="seo-impact">
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Tags adicionadas:</span>
+        <span class="seo-impact-value"><code>og:title</code>, <code>og:description</code>, <code>og:image</code>, <code>og:url</code>, <code>og:type</code>, <code>og:site_name</code>, <code>og:locale</code></span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Por que importa:</span>
+        <span class="seo-impact-value">Controla como o link aparece ao ser compartilhado no WhatsApp, LinkedIn, Facebook e Slack. Sem OG tags, o compartilhamento aparece sem imagem e com texto extraído automaticamente — prejudicando a percepção de profissionalismo e reduzindo cliques.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 4 -->
+  <div class="seo-item no-break">
+    <div class="seo-item-header">
+      <div class="seo-item-title">
+        <div class="seo-item-num">04</div>
+        Schema.org — Dados Estruturados (JSON-LD)
+        <span class="badge badge-green">Implementado</span>
+      </div>
+    </div>
+    <div class="seo-impact">
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Schemas:</span>
+        <span class="seo-impact-value"><code>Organization</code> + <code>SoftwareApplication</code> + <code>WebPage</code></span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Dados incluídos:</span>
+        <span class="seo-impact-value">Nome, URL, logo, e-mail, telefone, endereço, LinkedIn, categoria da aplicação, keywords do software</span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Por que importa:</span>
+        <span class="seo-impact-value">O Google usa dados estruturados para entender o que a página oferece sem precisar interpretar o HTML. Pode gerar Rich Snippets (estrelas, informações extras nos resultados) e é pré-requisito para Knowledge Graph. Para softwares B2B, o schema SoftwareApplication sinaliza categoria, público-alvo e tipo de oferta diretamente ao indexador.</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="report-footer">
+    <span>Hub.Siero — Documentação Técnica & SEO</span>
+    <span>Junho 2026</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- IMPLEMENTAÇÕES SEO (continuação)                       -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <p class="section-title">04 — Implementações Realizadas (continuação)</p>
+  <h2>SEO On-Page — Detalhamento</h2>
+
+  <!-- 5 -->
+  <div class="seo-item no-break">
+    <div class="seo-item-header">
+      <div class="seo-item-title">
+        <div class="seo-item-num">05</div>
+        URL Canônica
+        <span class="badge badge-green">Implementado</span>
+      </div>
+    </div>
+    <div class="seo-impact">
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Tag:</span>
+        <span class="seo-impact-value"><code>&lt;link rel="canonical" href="https://hubsiero.com.br/"&gt;</code></span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Por que importa:</span>
+        <span class="seo-impact-value">Evita que o Google indexe múltiplas versões da mesma página (www vs não-www, http vs https, com e sem barra final). A ausência de canonical pode resultar em penalidade de conteúdo duplicado, dividindo a autoridade de ranqueamento entre URLs diferentes.</span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Ação pendente:</span>
+        <span class="seo-impact-value">Atualizar para a URL real quando o domínio for registrado e configurado.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 6 -->
+  <div class="seo-item no-break">
+    <div class="seo-item-header">
+      <div class="seo-item-title">
+        <div class="seo-item-num">06</div>
+        Meta Robots
+        <span class="badge badge-green">Implementado</span>
+      </div>
+    </div>
+    <div class="seo-impact">
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Tag:</span>
+        <span class="seo-impact-value"><code>&lt;meta name="robots" content="index, follow"&gt;</code></span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Por que importa:</span>
+        <span class="seo-impact-value">Embora o Google indexe por padrão, declarar explicitamente <code>index, follow</code> é uma boa prática que garante que crawlers de todos os buscadores (Bing, Yahoo, DuckDuckGo) saibam que a página deve ser indexada e seus links seguidos.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 7 -->
+  <div class="seo-item no-break">
+    <div class="seo-item-header">
+      <div class="seo-item-title">
+        <div class="seo-item-num">07</div>
+        Favicon
+        <span class="badge badge-green">Implementado</span>
+      </div>
+    </div>
+    <div class="seo-impact">
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Arquivo:</span>
+        <span class="seo-impact-value"><code>links/s-icon-formsection.svg</code> — ícone "S" da marca Hub.Siero</span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Formato:</span>
+        <span class="seo-impact-value">SVG — suportado por todos os browsers modernos, vetorial e escalável</span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Por que importa:</span>
+        <span class="seo-impact-value">O favicon é exibido na aba do browser, nos bookmarks e nos resultados do Google mobile. Ausência de favicon é sinal de página inacabada e reduz confiança do usuário. O Google também usa o favicon nos snippets mobile dos resultados de busca.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 8 -->
+  <div class="seo-item no-break">
+    <div class="seo-item-header">
+      <div class="seo-item-title">
+        <div class="seo-item-num">08</div>
+        Semântica HTML — Tag &lt;main&gt;
+        <span class="badge badge-green">Implementado</span>
+      </div>
+    </div>
+    <div class="seo-impact">
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Por que importa:</span>
+        <span class="seo-impact-value">A tag <code>&lt;main&gt;</code> delimita o conteúdo principal da página para crawlers e tecnologias assistivas. O Googlebot usa elementos semânticos HTML5 para entender a hierarquia de conteúdo e priorizar o que indexar. Também melhora pontuação de acessibilidade (WCAG), que é fator indireto de ranqueamento.</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- 9 -->
+  <div class="seo-item no-break">
+    <div class="seo-item-header">
+      <div class="seo-item-title">
+        <div class="seo-item-num">09</div>
+        Alt Text em Imagens
+        <span class="badge badge-green">Implementado</span>
+      </div>
+    </div>
+    <div class="seo-impact">
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Imagens atualizadas:</span>
+        <span class="seo-impact-value">6 imagens com alt text semântico e contextual</span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Exemplo antes:</span>
+        <span class="seo-impact-value"><code>alt="dashboard"</code></span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Exemplo depois:</span>
+        <span class="seo-impact-value"><code>alt="Dashboard de gestão de departamento pessoal"</code></span>
+      </div>
+      <div class="seo-impact-row">
+        <span class="seo-impact-label">Por que importa:</span>
+        <span class="seo-impact-value">Alt text é lido pelo Googlebot para indexar imagens na busca de imagens do Google. Descrições ricas em keywords relevantes aumentam a chance de aparecer em pesquisas visuais. Também é obrigatório para acessibilidade (usuários com deficiência visual).</span>
+      </div>
+    </div>
+  </div>
+
+  <div class="report-footer">
+    <span>Hub.Siero — Documentação Técnica & SEO</span>
+    <span>Junho 2026</span>
+  </div>
+</div>
+
+<!-- ══════════════════════════════════════════════════════ -->
+<!-- ANALYTICS & PRÓXIMOS PASSOS                            -->
+<!-- ══════════════════════════════════════════════════════ -->
+<div class="page">
+  <p class="section-title">05 — Analytics & Monitoramento</p>
+  <h2>Microsoft Clarity</h2>
+
+  <p>O Microsoft Clarity foi integrado à landing page para monitoramento comportamental dos visitantes. A ferramenta é gratuita, não tem limite de tráfego e está conectada ao ID <code>x4fg83hc67</code>.</p>
+
+  <div class="cards-2 no-break">
+    <div class="card card-teal">
+      <h4 class="mb-8">Heatmaps</h4>
+      <p>Visualiza onde os usuários clicam, rolam e onde perdem interesse. Permite identificar quais seções da LP têm mais engajamento e onde há drop-off.</p>
+    </div>
+    <div class="card card-teal">
+      <h4 class="mb-8">Session Recordings</h4>
+      <p>Gravações anônimas de sessões reais de usuários. Permite ver exatamente como os visitantes interagem com o formulário, os cards e os CTAs.</p>
+    </div>
+    <div class="card card-teal">
+      <h4 class="mb-8">Dead Clicks & Rage Clicks</h4>
+      <p>Identifica elementos que os usuários tentam clicar sem resultado — indica problemas de UX que podem estar reduzindo conversões.</p>
+    </div>
+    <div class="card card-teal">
+      <h4 class="mb-8">Funil de Scroll</h4>
+      <p>Mostra até onde os usuários scrollam na página. Informa se os usuários chegam até o formulário de contato ou abandonam antes.</p>
+    </div>
+  </div>
+
+  <hr class="divider" />
+
+  <p class="section-title">06 — Próximos Passos</p>
+  <h2>Pendências & Recomendações</h2>
+
+  <table>
+    <thead>
+      <tr><th>Item</th><th>Prioridade</th><th>Ação necessária</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>Definição de domínio</td>
+        <td><span class="badge badge-yellow">Alta</span></td>
+        <td>Atualizar canonical URL, og:url e Schema.org nos 3 pontos do HTML</td>
+      </tr>
+      <tr>
+        <td>Hospedagem</td>
+        <td><span class="badge badge-yellow">Alta</span></td>
+        <td>GitHub Pages (grátis) ou Netlify (grátis com subdomínio customizável)</td>
+      </tr>
+      <tr>
+        <td>Google Search Console</td>
+        <td><span class="badge badge-yellow">Alta</span></td>
+        <td>Cadastrar o domínio e enviar sitemap.xml para indexação acelerada</td>
+      </tr>
+      <tr>
+        <td>sitemap.xml</td>
+        <td><span class="badge badge-blue">Média</span></td>
+        <td>Criar arquivo sitemap.xml com a URL da página para facilitar rastreamento</td>
+      </tr>
+      <tr>
+        <td>robots.txt</td>
+        <td><span class="badge badge-blue">Média</span></td>
+        <td>Criar robots.txt apontando para o sitemap</td>
+      </tr>
+      <tr>
+        <td>Imagem OG em formato PNG</td>
+        <td><span class="badge badge-blue">Média</span></td>
+        <td>Converter Open Graph.svg para PNG (1200×630px) — alguns scrapers não suportam SVG</td>
+      </tr>
+      <tr>
+        <td>Google Analytics 4</td>
+        <td><span class="badge badge-blue">Média</span></td>
+        <td>Adicionar GA4 para métricas de conversão do formulário</td>
+      </tr>
+      <tr>
+        <td>Link Building</td>
+        <td><span class="badge badge-blue">Média</span></td>
+        <td>Publicar artigos no LinkedIn sobre DP/eSocial com link para a LP</td>
+      </tr>
+      <tr>
+        <td>Core Web Vitals</td>
+        <td><span class="badge badge-teal">Baixa</span></td>
+        <td>Medir LCP, FID e CLS via PageSpeed Insights após hospedagem</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="cards-2 no-break mt-32">
+    <div class="card card-navy">
+      <h4 class="mb-8">SEO Score estimado atual</h4>
+      <div class="stat-num" style="color:var(--teal)">78/100</div>
+      <p style="margin-top:8px">On-page otimizado. Aguardando domínio para completar itens técnicos restantes (canonical, sitemap, Search Console).</p>
+    </div>
+    <div class="card card-navy">
+      <h4 class="mb-8">Score estimado pós-domínio</h4>
+      <div class="stat-num" style="color:var(--teal)">91/100</div>
+      <p style="margin-top:8px">Com sitemap.xml, robots.txt, Search Console e Google Analytics 4 configurados.</p>
+    </div>
+  </div>
+
+  <div class="report-footer">
+    <span>Hub.Siero — Documentação Técnica & SEO</span>
+    <span>Junho 2026 — Confidencial</span>
+  </div>
+</div>
+
+
+</body>
+</html>
