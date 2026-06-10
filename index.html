@@ -152,7 +152,7 @@
 
     <!-- Subheadline -->
     <p class="hero-sub">
-      Automatize a conferência da folha de pagamento e garanta a correta aplicação da legislação vigente e normais sindicais. Menos burocracia, mais tempo para o que importa.
+      Automatize a conferência da folha de pagamento e garanta a correta aplicação da legislação vigente e normas sindicais. Menos burocracia, mais tempo para o que importa.
     </p>
 
     <!-- CTA Group -->
@@ -209,7 +209,7 @@
             <path d="M3 7h2c2 0 5-1 7-2 2 1 5 2 7 2h2"/>
           </svg>
         </div>
-        <h3 class="feature-card-title">Compliance & Auditoria tributária</h3>
+        <h3 class="feature-card-title">Compliance & Auditoria Tributária</h3>
         <p class="feature-card-desc">Assegure conformidade fiscal e reduza riscos por meio de análises estratégicas, cruzamento de informações e auditorias preventivas, garantindo maior segurança nas operações tributárias da empresa.</p>
       </div>
 
@@ -370,6 +370,45 @@
 
   </section>
 
+  <!-- ── EFICIÊNCIAS ──────────────────────────────────────── -->
+  <section class="efficiencies-section">
+    <div class="efficiencies-grid">
+
+      <div class="efficiency-card">
+        <div class="efficiency-icon"><i data-lucide="percent"></i></div>
+        <div class="efficiency-content">
+          <h3 class="efficiency-title">Eficiência Tributária</h3>
+          <p class="efficiency-desc">Cruzamento inteligente entre salários, benefícios e tributos para gerar provisões</p>
+        </div>
+      </div>
+
+      <div class="efficiency-card">
+        <div class="efficiency-icon"><i data-lucide="trending-up"></i></div>
+        <div class="efficiency-content">
+          <h3 class="efficiency-title">Eficiência Contábil</h3>
+          <p class="efficiency-desc">Geração de indicadores com a finalidade de redução de custo operacional</p>
+        </div>
+      </div>
+
+      <div class="efficiency-card">
+        <div class="efficiency-icon"><i data-lucide="users"></i></div>
+        <div class="efficiency-content">
+          <h3 class="efficiency-title">Eficiência Operacional</h3>
+          <p class="efficiency-desc">Controle de vencimentos eficaz na gestão de pagamentos das obrigações</p>
+        </div>
+      </div>
+
+      <div class="efficiency-card">
+        <div class="efficiency-icon"><i data-lucide="target"></i></div>
+        <div class="efficiency-content">
+          <h3 class="efficiency-title">Maximização de Margem</h3>
+          <p class="efficiency-desc">Maximização de resultado tributário e apuração de créditos tributários</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <!-- ── PROCESSO / ETAPAS ────────────────────────────────── -->
   <section class="steps-section">
 
@@ -383,7 +422,7 @@
       <div class="step-card">
         <span class="step-num">01</span>
         <h3 class="step-title">Conhecendo o Hub.Siero</h3>
-        <p class="step-desc">Nesta etapa nossos especialistas vão te mostrar como o Hub.Siero pode automatizar a sua operação, apresentando as funcionalidades e os resultados esperados.</p>
+        <p class="step-desc">Nesta etapa, nossos especialistas vão te mostrar como o Hub.Siero pode automatizar a sua operação, apresentando as funcionalidades e os resultados esperados.</p>
         <div class="step-visual step-visual--icon">
           <div class="impl-comp">
             <span class="impl-ring impl-ring--lg"></span>
@@ -472,7 +511,7 @@
       <div class="footer-col">
         <h4 class="footer-col-title">Contato</h4>
         <address class="footer-address">
-          <p>Av. Das Nações Unidas, 11.541<br />18º Andar — São Paulo, SP — Brasil</p>
+          <p>Av. das Nações Unidas, 11.541<br />18º Andar — São Paulo, SP — Brasil</p>
           <p><a href="mailto:contato@hubsiero.com.br">contato@hubsiero.com.br</a></p>
           <p><a href="tel:+5511945018465">(11) 94501-8465</a></p>
         </address>
@@ -550,6 +589,19 @@
   <script>
     document.addEventListener('DOMContentLoaded', () => {
       lucide.createIcons();
+
+      // Scroll-active: activa hover nos cards ao scrollar em touch devices
+      if (window.matchMedia('(hover: none)').matches) {
+        const cards = document.querySelectorAll(
+          '.feature-card, .service-card, .step-card, .efficiency-card'
+        );
+        const cardObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            entry.target.classList.toggle('scroll-active', entry.isIntersecting);
+          });
+        }, { threshold: 0.45 });
+        cards.forEach(c => cardObserver.observe(c));
+      }
 
       // Lazy-load videos: source só é atribuído quando entra no viewport
       const videoObserver = new IntersectionObserver((entries) => {
