@@ -87,8 +87,33 @@
   <link rel="stylesheet" href="style.css" />
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js" defer></script>
 
-  <!-- Garante que a página sempre abre no topo -->
-  <script>if (history.scrollRestoration) history.scrollRestoration = 'manual';</script>
+  <!-- Garante que a página sempre abre no topo (evita scroll do HubSpot ao inicializar) -->
+  <script>
+    if (history.scrollRestoration) history.scrollRestoration = 'manual';
+
+    // HubSpot chama scrollIntoView() ao renderizar o iframe — bloqueamos scroll
+    // externo durante o carregamento inicial e forçamos topo após o load.
+    (function () {
+      var _origScrollTo = window.scrollTo.bind(window);
+      var _origScrollIntoView = Element.prototype.scrollIntoView;
+      var locked = true;
+
+      window.scrollTo = function (x, y) {
+        if (!locked) { _origScrollTo(x, y); }
+      };
+
+      Element.prototype.scrollIntoView = function (arg) {
+        if (!locked) { _origScrollIntoView.call(this, arg); }
+      };
+
+      window.addEventListener('load', function () {
+        _origScrollTo(0, 0);
+        setTimeout(function () {
+          locked = false;
+        }, 1500);
+      });
+    })();
+  </script>
 
   <!-- Microsoft Clarity -->
   <script type="text/javascript">
